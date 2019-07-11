@@ -1,0 +1,221 @@
+%% !TEX TS-program = latex
+%%Vorspann von Ulla Aeschbacher%%
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\usepackage[paper=a4paper,left=27mm,right=27mm,top=30mm,bottom=30mm]{geometry} 	                        	%für Seitenränder und vieles weitere
+
+\usepackage{tikz}												                        		            %tikzpicture
+\usetikzlibrary{arrows.meta}									                        	              	%arrowheads length and width
+\usetikzlibrary{calc}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{pgfplots}                                                                                       %for easily adding plots
+\pgfplotsset{compat=1.15}
+
+\usepackage{amsmath}									                        		            		%For multiline equations
+\usepackage{ifsym}
+\usepackage{amssymb}									                         		            		%For mathbb
+\usepackage{mathtools}										                        	            		%For matrices and writing over arrows
+\usepackage{bm}												                                       		    %To write bold in math mode
+\usepackage{extpfeil}										                                      			%For more varieties in arrows 
+\usepackage{extarrows}									            				                        %For long text over long arrows
+    
+\usepackage{amsthm}										            			                            %For not cursive theorems
+\usepackage{framed}										            	                        		    %for frames around theorems
+\usepackage{thmtools}											                                    		%for easy custom theorems
+
+\usepackage{enumerate}										                                     			%To be able to customize \benum[a)] \benum[**(i)**] etc...
+\usepackage{chngcntr}                                                                                       %to enumerate theorems within section,subsection etc.
+
+\usepackage[parfill]{parskip}									                                       		%no indentation for paragraphs
+
+\usepackage{color}											                                    			%to color text
+\usepackage{multicol}										                                    			%use as \begin{multicol}
+\usepackage{multirow}									                                    				%for multirow/multicolumn in tabular
+\usepackage{caption} 									                                    				%captions for pictures in 
+\usepackage{newfloat}
+    %for defining new floats
+ 
+\usepackage{listings}									                                    				%for code
+
+\usepackage{algorithm}								                                    					%for algorithms
+\usepackage{algpseudocode}							                                    					%from algorithmicx, for creating new blocks
+\usepackage{float}									                                    					%use [H] after floating environments to fix placement
+
+\clubpenalty=10000								                                    						%für Hurenkinder und Schusterjungen	
+\widowpenalty=10000
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\definecolor{mred}{rgb}{0.82, 0.1, 0.26}
+\definecolor{mblue}{rgb}{0.0, 0.73, 0.84}
+\definecolor{mgreen}{rgb}{0.0, 0.8, 0.0}
+\newcommand{\tr}[1]{\textcolor{mred}{#1}}
+\newcommand{\tb}[1]{\textcolor{mblue}{#1}}
+\newcommand{\tg}[1]{\textcolor{mgreen}{#1}}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+%   \begin{mydef}[Degree] The number of neigbors of a vertex. \end{mydef}
+%	Definition 1 Degree: The number of neigbors of a vertex.
+\makeatletter
+\declaretheoremstyle[
+	spaceabove=6pt, spacebelow=6pt,
+	headfont=\normalfont\bfseries,
+	notefont=\color{mgreen}\bfseries, 
+	notebraces={}{},
+	bodyfont=\normalfont,
+	postheadspace=0.5 em,
+	headpunct={:},
+	spacebelow=\parsep,
+    	spaceabove=\parsep,
+	postheadhook={%
+		\ifx\@empty\thmt@shortoptarg
+		\renewcommand\addcontentsline[3]{}
+		\fi},
+]{mydef}
+\declaretheorem[name={Definition}, style=mydef]{mydef}
+\makeatother
+
+%   \begin{mythm}[Gauss] The number of neigbors of a vertex. \end{mythm}
+%	\box{Theorem 1 (Gauss): The number of neigbors of a vertex.}
+\makeatletter
+\declaretheoremstyle[
+	spaceabove=6pt, spacebelow=6pt,
+	headfont=\normalfont\bfseries,
+	notefont=\color{mred}\bfseries, 
+	notebraces={}{},
+	bodyfont=\normalfont,
+	postheadspace=0.5 em,
+	headpunct={:},
+	spacebelow=\parsep,
+    	spaceabove=\parsep,
+	postheadhook={%
+		\ifx\@empty\thmt@shortoptarg
+		\renewcommand\addcontentsline[3]{}
+		\fi},
+	mdframed={
+		linecolor=black, 
+		innertopmargin=6pt,
+		innerbottommargin=6pt, 
+		skipabove=\parsep, 
+		skipbelow=\parsep } 
+]{mythm}
+\declaretheorem[name={Theorem}, style=mythm]{mythm}
+\makeatother
+
+%   \begin{mytitle}[Title] This is the text. \end{mytitle}
+%	1 Title: This is the text.
+\makeatletter
+\declaretheoremstyle[
+	spaceabove=6pt, spacebelow=6pt,
+	headfont=\normalfont\bfseries,
+	notefont=\color{black}\bfseries, 
+	notebraces={}{},
+	bodyfont=\normalfont,
+	postheadspace=0.5 em,
+	headpunct={:},
+	spacebelow=\parsep,
+    	spaceabove=\parsep,
+	postheadhook={%
+		\ifx\@empty\thmt@shortoptarg
+		\renewcommand\addcontentsline[3]{}
+		\fi},
+	numberwithin=subsection,
+]{mytitle}
+\declaretheorem[name={}, style=mytitle]{mytitle}
+\makeatother
+
+%   \begin{mysubtitle}[Subtitle] This is the text. \end{mysubtitle}
+%	1 Subtitle: This is the text.
+\makeatletter
+\declaretheoremstyle[
+	spaceabove=6pt, spacebelow=6pt,
+	headfont=\normalfont\bfseries,
+	headindent=2em,
+	notefont=\color{black}\bfseries, 
+	notebraces={}{},
+	bodyfont=\normalfont,
+	postheadspace=0.5 em,
+	headpunct={:},
+	spacebelow=\parsep,
+    	spaceabove=\parsep,
+	postheadhook={%
+		\ifx\@empty\thmt@shortoptarg
+		\renewcommand\addcontentsline[3]{}
+		\fi},
+	numberwithin=mytitle,
+]{mysubtitle}
+\declaretheorem[name={}, style=mysubtitle]{mysubtitle}
+\makeatother
+
+%   \begin{myremark} This is the text. \end{myremark}
+%	1 : This is the text.
+\makeatletter
+\declaretheoremstyle[
+	spaceabove=6pt, spacebelow=6pt,
+	headfont=\normalfont\bfseries,
+	notefont=\color{black}\bfseries, 
+	notebraces={}{},
+	bodyfont=\normalfont\itshape,
+	postheadspace=0.5 em,
+	headpunct={},
+	spacebelow=\parsep,
+    	spaceabove=\parsep,
+	postheadhook={%
+		\ifx\@empty\thmt@shortoptarg
+		\renewcommand\addcontentsline[3]{}
+		\fi},
+	numberwithin=subsection,
+]{myremark}
+\declaretheorem[name={}, style=myremark]{myremark}
+\makeatother
+
+%	\bem{The number of neigbors of a vertex.}
+%	Remark 1: \italic{The number of neigbors of a vertex.}
+\newtheoremstyle{bemdef}{1em}{1em}{\itshape}{}{\bfseries}{:}{0.5em}{}
+\theoremstyle{bemdef}
+\newtheorem{bemerkung}{Remark}
+\newcommand{\bem}[1]{\begin{bemerkung}#1\end{bemerkung}}
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}        									                            % = `top' strut = Abstand vor /hline in array und tabular
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}   									                            % = `bottom' strut = Abstand nach /hline in array und tabular
+
+\iffalse
+%use like this
+\begin{tabular}{l l}
+A & B\\
+\hline
+a & b\Tstrut\\[0.5em]
+c & d\\[0.5em]
+e & f
+\end{tabular}
+\fi
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\vekt}[2]{\left(\begin{array}{r r} #1 \\ #2 \end{array}\right)}						            %2-dim Vektor
+\newcommand{\vekts}[2]{\left(\begin{smallmatrix} #1\\ #2 \end{smallmatrix}\right)}				            %small Vektor für in-text
+\newcommand{\vek}[3]{\left(\begin{array}{r r r} #1 \\ #2 \\ #3 \end{array}\right)}				        	%3-dim Vektor
+\newcommand{\vekb}[3]{\left(\begin{array}{r r r} #1 \\[0.3em] #2 \\[0.3em] #3 \end{array}\right)}		    %3-dim Vektor für Brüche
+\newcommand{\vekc}[3]{\left(\begin{array}{c c c} #1 \\ #2 \\ #3 \end{array}\right)}                         %zentrierter 3-dim Vektor
+\newcommand{\vekbc}[3]{\left(\begin{array}{c c c} #1 \\[0.8em] #2 \\[0.8em] #3 \end{array}\right)}	        %zentrierter 3-dim Vektor für Brüche
+\newcommand{\veks}[3]{\left(\begin{smallmatrix} #1\\ #2 \\ #3 \end{smallmatrix}\right)}			            %small Vektor für in-text
+\newcommand{\vekk}[4]{\left(\begin{array}{r r r r} #1 \\ #2 \\ #3 \\ #4 \end{array}\right)}			        %4-dim Vektor
+\newcommand{\vekks}[4]{\left(\begin{smallmatrix} #1\\ #2 \\ #3 \\ #4 \end{smallmatrix}\right)}		        %small Vektor für in-text
+\newcommand{\efrac}[1]{\frac{1}{#1}}												                        %1/x Bruch
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\doubleu}[1]{\underline{\underline{#1}}}							                            %to double underline something in math mode
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\mc}[1]{\mathcal{#1}}											                                %Mathcal
+
+\newcommand{\mb}[1]{\mathbb{#1}}											                                %Mathbb
+
+\newcommand{\ttt}[1]{\texttt{#1}}											                                %Texttt
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\spr}[2]{\left\langle #1,#2 \right\rangle}							                            %Skalarprodukt
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}								                            %Norm
+\newcommand{\abs}[1]{\left\vert #1 \right\vert}									                            %Betrag
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+\newcommand{\rank}{\text{rank}}											                                    %rank
+\newcommand{\spann}{\text{span}}											                                %span
+\newcommand{\im}{\text{Im}}												                                    %Im
+\newcommand{\sign}{\text{sign}}										                                    	%sign
+\newcommand{\id}{\text{id }}												                                %id
+\newcommand{\diag}{\text{diag}}											                                    %diag
+\renewcommand{\ker}{\text{ker}}											                                    %ker
+\renewcommand{\dim}{\text{dim}}											                                    %dim
+%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------

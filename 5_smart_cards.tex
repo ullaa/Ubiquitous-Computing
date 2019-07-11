@@ -1,0 +1,77 @@
+\section{Smart Cards}
+\begin{mytitle}[Main use] Smart cards are portable secure containers for secret data. They are a secure environment for cryptographic algorithms, but they are also interesting for ubicomp technology because they are a cheap, small and disposable computer with security tokens. 
+\end{mytitle}
+\begin{mytitle}[Memory cards vs processor cards] Memory cards are just a container for data, usually with access control for parts of the memory. They are cheap but not truly smart. Processor cards on the other hand have an internal microprocessor and RAM. They optionally contain a true random generator or hardware crypt-functionality.
+\end{mytitle}
+\begin{mytitle}[Communication with the card] Communication between the card reader and the smart card is always initiated by the reader. The card gets Vcc and CLK and does a "reset". Within a few ms, it sends back an "answer to reset" (ATR) containing basic information about the card. Then the terminal sends the first command application protocol data unit (APDU) to the card and the card answers with a response APDU. Encryption and authentication is possible, but slows down the communication by a factor of 4.
+\end{mytitle}
+\begin{mytitle}[Subscriber identity module (SIM)] The SIM is the security module for accessing the mobile phone network.
+\end{mytitle}
+\begin{mytitle}[Contact-less smart cards] These smart cards use an external energy source like RFID does. They are more expensive but have better security compared to RFID tags.
+\end{mytitle}
+\begin{myremark} The secret data inside the card must never leave the card and computations must not be observable from the outside.
+\end{myremark}
+\begin{mytitle}[Entity authentication] The terminal verifies the card (internal auth) and the card verifies the terminal (external auth). Then the terminal asks the user to provide the password and sends it to the card for verification.
+\end{mytitle}
+
+\subsection{Attacks}
+\begin{mytitle}[Attack classification] There are three kinds of attackers:
+\begin{itemize}
+    \item Clever outsiders: they use existing weaknesses in systems
+    \item Knowledgeable insiders: they have access to highly sophisticated tools
+    \item Funded organizations: they have virtually unlimited resources
+\end{itemize}
+\end{mytitle}
+\begin{mytitle}[Leakage] Power consumption, heat, electromagnetic emissions, timing and faulty outputs are all side-channel informations that get leaked and can be used in attacks.
+\end{mytitle}
+\begin{mytitle}[Simple attacks]\hfill
+\begin{itemize}
+    \item Clock bursts: momentarily cause a rapid increase in the clock frequency, this causes instructions to be skipped
+    \item Voltage glitch: momentarily cause a drop in voltage, this causes instructions to be decoded incorrectly
+    \item Acid hacking: gain access to ROM by physically looking at it to see the bits
+\end{itemize}
+\end{mytitle}
+\begin{mytitle}[More advanced attacks]\hfill
+\begin{itemize}
+    \item Power analysis attack: The attacker measures the power consumption to learn the bits of the secret key. When no special counter-measures are taken, this is applicable for almost all crypt-algorithms and smart cards.
+    \item Hamming weight leakage: The attacker learns the number of 1s in each of the seven 8-bit words of the secret key. This reduces the brute-force search space from $2^{56}$ to $2^{40}$.
+    \item Timing attack: Because there is code that is only executed when the bit is 1, the operation will take a bit longer in that case. From this information the attacker can also learn the bits of the secret key.
+\end{itemize}
+\end{mytitle}
+
+\subsection{Counter-measures}
+\begin{mytitle}[Hardware counter-measures] \hfill
+\begin{itemize}
+    \item Balance/equalize power consumption
+    \item Increase noise
+    \item Vary the execution time of instructions
+    \item Randomly modify the internal clock speed
+\end{itemize}
+\end{mytitle}
+\begin{mytitle}[Software counter-measures]\hfill
+\begin{itemize}
+    \item Add random instructions to desynchronize
+    \item Don't let the timing depend on the data or the key
+    \item Limit the number of times an algorithm can be executed
+\end{itemize}
+\end{mytitle}
+\begin{mytitle}[General counter-measures]\hfill
+\begin{itemize}
+    \item Scramble the data bus and memory cells/addresses differently for each chip
+    \item Use dual logic where 10 = low and 01 = high. They always consume the same amount of power.
+    \item Use a dual CPU where the same operation is performed on two CPUs and then compared.
+    \item Use checksums on memory content.
+    \item Encrypt the memory content
+    \item Encrypt/decrypt the data on the bus with dynamic random keys.
+    \item Use shielding and protection layers
+\end{itemize}
+\end{mytitle}
+\begin{mytitle}[Active hardware counter-measures]\hfill
+\begin{itemize}
+    \item Use sensors reacting to light, temperature sensors against increased clock rates and resistance/capacity sensors to detect removal of the chips protection layers.
+    \item Watch the current and clock-frequency to detect hardware attacks.
+    \item Do functional tests of parts of the chip.
+    \item Overwrite critical parts of the EEPROM when an attack is suspected.
+    \item Coat the chip with ransom particles with a high dielectric constant. An array of capacitive sensors detects those properties and uses them as secret random information
+\end{itemize}
+\end{mytitle}

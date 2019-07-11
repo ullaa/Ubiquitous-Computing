@@ -1,0 +1,29 @@
+\begin{center}
+\begin{tikzpicture}
+
+\node (A) at (5,4.5) [draw,minimum width=10cm,minimum height=1cm] {Standby};
+\node (B1) at (2.25,3) [draw,minimum width=4.5cm,minimum height=1cm] {Inquiry};
+\node (B2) at (7.75,3) [draw,minimum width=4.5cm,minimum height=1cm] {Page};
+\node (C1) at (2.25,1.5) [draw,minimum width=4.5cm,minimum height=1cm] {Sniff AMA};
+\node (C2) at (7.75,1.5) [draw,minimum width=4.5cm,minimum height=1cm] {Active AMA};
+\node (D1) at (5,0) [draw,minimum width=4.5cm,minimum height=1cm] {Park PMA};
+\node (D2) at (10.5,0) [draw,minimum width=4.5cm,minimum height=1cm] {Hold AMA};
+
+\draw [->] (B1 |- A.south) -- (B1);
+\draw [->] (B2 |- A.south) -- (B2);
+\draw [->] (B1) -- (B2);
+\draw [->] (B2) -- (C2);
+\draw [<->] (C1) -- (C2);
+\draw [<->] ([xshift=4em]D1 |- C2.south) -- ([xshift=4em]D1.north);
+\draw [<->] ([xshift=-4em]D2 |- C2.south) -- ([xshift=-4em]D2.north);
+
+\draw [dashed] (-0.5,2.25) -- (15,2.25);
+\draw [dashed] (-0.5, 3.75) -- (15,3.75);
+
+\node at (15, 4.25) [anchor=east] {Not Connected};
+\node at (15, 3) [anchor=east] {Connecting};
+\node at (15, 1.75) [anchor=east] {Connected};
+
+\end{tikzpicture}
+\captionof{figure}{Baseband Connection States}
+\end{center}
