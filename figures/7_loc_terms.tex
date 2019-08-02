@@ -21,10 +21,10 @@ clip=false
 
 \addplot+ [black, fill=white] coordinates {(2,0.2) (2.5,0.4) (3,1) (3.5,1.5) (4,2.5) (4.5,1.2) (5,0.8) (5.5,0.3)};
 
-\draw [dashed, black] (1,0) -- (1,3);
-\node at (1,2.8) [anchor=west] {Reference value};
-\draw [dashed, black] (3.9,0) -- (3.9,3);
-\node at (3.9,2.8) [anchor=west] {Estimate};
+\draw [dashed, orange] (1,0) -- (1,3);
+\node at (1,2.8) [anchor=west, orange] {Reference value};
+\draw [dashed, red] (3.9,0) -- (3.9,3);
+\node at (3.9,2.8) [anchor=west, red] {Estimate};
 \draw [<->, black] (1,2) -- (3.9,2);
 \node at (2.45, 2.2) [] {Accuracy/Error};
 \draw [<->, black] (4.5, 1.3) -- (5, 1.3);

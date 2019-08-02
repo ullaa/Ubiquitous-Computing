@@ -17,9 +17,9 @@ anchor=center,
 legend pos=south east,
 legend cell align={right}
 ]
-\addplot+ [samples = 40, domain=0:7.5, no markers, black, dashed] {x^3/130};
+\addplot+ [samples = 40, domain=0:7.5, no markers, red, dotted] {x^3/130};
 \addlegendentry{Data rate}
-\addplot+ [samples = 40, domain=0:7.5, no markers, black] {-(x-7.5)^3/130};
+\addplot+ [samples = 40, domain=0:7.5, no markers, orange] {-(x-7.5)^3/130};
 \addlegendentry{Antenna size}
 \addplot+ [mark=none, black, dashed] coordinates {(5, 0) (5, 3)};
 \node [anchor=east] at (4.8,2.5) {penetration};
