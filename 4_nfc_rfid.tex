@@ -28,9 +28,9 @@
 \begin{mytitle}[Typical encoding schemes] 
     \begin{mysubtitle}[NRZ] 1 = high, 0 = low
     \end{mysubtitle}
-    \begin{mysubtitle}[Manchester] 1 = high$\to$low, 0 = low$\to$high. This is typically used for tag $\to$ reader communication.
+    \begin{mysubtitle}[Manchester] 1 = high$\to$low, 0 = low$\to$high. This is typically used for tag to reader communication.
     \end{mysubtitle}
-    \begin{mysubtitle}[Pulse pause coding (PPC)] 1 = short period to next pause, 0 = long period to next pause. This is typically used for reader $\to$ tag communication.
+    \begin{mysubtitle}[Pulse pause coding (PPC)] 1 = short period to next pause, 0 = long period to next pause. This is typically used for reader to tag communication.
     \end{mysubtitle}
 \end{mytitle}
 
@@ -39,10 +39,10 @@
 \end{mytitle}
 \begin{mytitle}[Collision avoidance with FDMA] This approach needs many channels in parallel, hence it is only suitable for some particular applications with a small, fixed number of transponders.
 \end{mytitle}
-\begin{mytitle}[Stochastic protocols] Stochastic protocols usually do not detect all tags in one read cycle, ther is overall less reader to tag communication and there is typically an ALOHA-based anti-collision algorithm.
-    \begin{mysubtitle}[ALOHA principle] Transponders repeatedly send out their data with random long quiet periods in-between. The data should eventually get through. The higher the load, the more collisions happen. This has a maximal throughput of 18.4\%.
+\begin{mytitle}[Stochastic protocols] Stochastic protocols usually do not detect all tags in one read cycle, there is overall less reader to tag communication and there is typically an ALOHA-based anti-collision algorithm.
+    \begin{mysubtitle}[ALOHA principle] Transponders repeatedly send out their data with random length quiet periods in-between. The data should eventually get through. The higher the load, the more collisions happen. This has a maximal throughput of 18.4\%.
     \end{mysubtitle}
-    \begin{mysubtitle}[Slotted ALOHA] Transponders start their transmissions only at well-defined instants (slots). Synchronization is done by the reaer who periodically sends out "sync" commands. All transponders then send their serial number in one of the following slots. If the reader gets only one serial number "sn", it sends a "select sn" command. Only the transponder with serial number "sn" responds by sending its payload data. The maximal throughput is then 36.8\%. 
+    \begin{mysubtitle}[Slotted ALOHA] Transponders start their transmissions only at well-defined instants (slots). Synchronization is done by the reader who periodically sends out "sync" commands. All transponders then send their serial number in one of the following slots. If the reader gets only one serial number "sn", it sends a "select sn" command. Only the transponder with serial number "sn" responds by sending its payload data. The maximal throughput is then 36.8\%. 
     \end{mysubtitle}
     \begin{mysubtitle}[Reservation ALOHA] This protocol has two phases: first a short ALOHA phase where the transponders compete for reservations, then the reserved phase for payload data transmission. 
     \end{mysubtitle}
@@ -62,7 +62,7 @@
 \begin{itemize}
     \item Read range: Low and high frequency have a read range of 1-1.5 m, ultra high frequency has a read range of around 10 m. The working area is typically complex.
     \item Data transfer and detection rate: Low and high frequency have a data transfer rate of 5 kb/s, ultra high frequency has a data transfer rate of 50 kb/s. The detection rate depends on the data transfer rate, the choice of anti-collision algorithm and the length of the tag ID. Typically low and high frequency have a detection rate of 10-30 tags/s, ultra high frequency has a range of 100-500 tags/s.
-    \item Susceptibility to noise and other error sources: This depends on frequency, antenna size and protcol.
+    \item Susceptibility to noise and other error sources: This depends on frequency, antenna size and protocol.
     \item Cost: The cost typically ranges from a few cents to a few dollars.
     \item Form factors: This includes things like the coice of paper vs. plastic.
 \end{itemize}

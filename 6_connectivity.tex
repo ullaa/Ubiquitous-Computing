@@ -34,24 +34,23 @@
     \begin{mysubtitle}[Low-power probing (LPP)] The receivers periodically send probes, the sender listens for them and sends payload immediately after receiving one.
     \end{mysubtitle}
 \end{mytitle}
-\begin{mytitle}[Multiplexing] The goal here is to make best use of precious shared wireless medium.
-\end{mytitle}
-
-\begin{mysubtitle}[Space division mutltiple access (SDMA)] Here we segment space into cells/sectors. We use the same frequencies in different cells. The advantage is its simplicity. The disadvantages are the needed infrastructure investment and handover management.
-\end{mysubtitle}
-\begin{mysubtitle}[Frequency division multiple access (FDMA)] Here we separate the spectrum into smaller frequency bands and allocate one band per channel. The advantage is that there is no need for co-ordination. The disadvantages are the possible waste of bandwidth and its inflexibility.
-\end{mysubtitle}
-\begin{mysubtitle}[Time division multiple access (TDMA)] Here one channel gets the entire spectrum but only for a short period of time. The advantages are that we use only one carrier at at time and that there is higher throughput possible. The disadvantage is the precise synchronization that is needed.
-\end{mysubtitle}
-\begin{mysubtitle}[Combination of FDMA + TDMA (+ SDMA)] A combination has the advantages that it is more robust against selective interference and has better eavesdrop resistance. The disadvantage is the precise synchronization that is needed.
-\end{mysubtitle}
-\begin{mytitle}[Code division multiple access (CDMA)] Here we take a narrowband signal and spread it over the available spectrum. All channels then use the same spectrum simultaneously and statistical methods are used to disentangle the signals. Each channel has a unique code. In DS-CDMA the code is used to chip the signal into smaller pieces, while in FH-CDMA the code us used as a hopping pattern between frequencies. The advantages here are its bandwidth efficiency, that no synchronization is needed and the robustness against interference and eavesdropping. The disadvantage is that more complex signal filtering is needed for decoding the signals.
+\begin{mytitle}[Multiplexing] The goal here is to make best use of the precious shared wireless medium.
+    \begin{mysubtitle}[Space division mutltiple access (SDMA)] Here we segment space into cells/sectors. We use the same frequencies in different cells. The advantage is its simplicity. The disadvantages are the needed infrastructure investment and handover management.
+    \end{mysubtitle}
+    \begin{mysubtitle}[Frequency division multiple access (FDMA)] Here we separate the spectrum into smaller frequency bands and allocate one band per channel. The advantage is that there is no need for co-ordination. The disadvantages are the possible waste of bandwidth and its inflexibility.
+    \end{mysubtitle}
+    \begin{mysubtitle}[Time division multiple access (TDMA)] Here one channel gets the entire spectrum but only for a short period of time. The advantages are that we use only one carrier at at time and that there is higher throughput possible. The disadvantage is the precise synchronization that is needed.
+    \end{mysubtitle}
+    \begin{mysubtitle}[Combination of FDMA + TDMA (+ SDMA)] A combination has the advantages that it is more robust against selective interference and has better eavesdrop resistance. The disadvantage is the precise synchronization that is needed.
+    \end{mysubtitle}
+    \begin{mysubtitle}[Code division multiple access (CDMA)] Here we take a narrowband signal and spread it over the available spectrum. All channels then use the same spectrum simultaneously and statistical methods are used to disentangle the signals. Each channel has a unique code. In DS-CDMA the code is used to chip the signal into smaller pieces, while in FH-CDMA the code is used as a hopping pattern between frequencies. The advantages here are its bandwidth efficiency, that no synchronization is needed and its robustness against interference and eavesdropping. The disadvantage is that more complex signal filtering is needed for decoding the signals.
+    \end{mysubtitle}
 \end{mytitle}
 \begin{mytitle}[Low-power wide area network (LPWAN)] We want long range, a low number of base stations, a low data rate, low battery and low subscription costs. Examples of LPWAN providers are SigFox and LoRa.
 \end{mytitle}
 
 \subsection{Bluetooth}
-\begin{mytitle}[Bluetooth] Bluetooth is intended as a WLAN replacement in personal area networks. It is much smaller, cheaper and needs less power, but only has a short range (\textasciitilde 10 m) and up to 720 kb/s. It also needs a complex communication stack to support voice and data as well as bluetooth profiles for different device functions. 
+\begin{mytitle}[Bluetooth] Bluetooth is intended as a WLAN replacement in personal area networks. It is much smaller, cheaper and needs less power, but only has a short range ($\sim$10 m) and up to 720 kb/s. It also needs a complex communication stack to support voice and data as well as bluetooth profiles for different device functions. 
 \end{mytitle}
 \input{figures/6_bluetooth}
 \begin{mytitle}[Frequency hopping on the radio layer] If a collision occurs, a packet is retransmitted on a different channel. The specific hopping pattern is not known to outsiders. A common hopping sequence for all cooperating devices is determined by the baseband layer. There are about 1600 hops/s.
@@ -74,18 +73,18 @@
     \end{mysubtitle}
     \begin{mysubtitle}[Error Handling]\hfill
     \begin{itemize}
-        \item Automatic repeat request (ARQ): determined from 1-bit ACK/NAK, 1-bit seq. number
+        \item Automatic repeat request (ARQ): determined from 1-bit ACK/NAK and 1-bit seq. number
         \item Forward error correction (FEC): reduces number of repeat requests but adds overhead
     \end{itemize}
     \end{mysubtitle}
 \end{mytitle}
 \input{figures/6_baseband}
 
-\begin{mytitle}[Link manager] The link manager manages the piconet, authentication (only accept connections from trusted devices), switching of master/slave roles and the tearing down of connections when slaves leave. It also handles the low power modes. Active voice mode uses around 10 mA, active data mode uses around 6 mA and hold/park mode only 60 $\mu$A. Bluetooth low energy has a 1 $\mu$A average.
+\begin{mytitle}[Link manager] The link manager manages the piconet, authentication (only accept connections from trusted devices), switching of master/slave roles and the tearing down of connections when slaves leave. It also handles the low power modes. Active voice mode uses around 10 mA, active data mode uses around 6 mA and hold/park mode only 60 $\mu$A. For comparison bluetooth low energy has a 1 $\mu$A average.
 \end{mytitle}
 \begin{mytitle}[Logical link control \& adaptation protocol (L2CAP)] L2CAP adapts the upper layer protocols to the baseband. It handles the segmentation and reassembly of the upper layer protocol packets and the protocol multiplexing over a single air interface.
 \end{mytitle}
-\begin{mytitle}[RFCOMM] RFCOMM emulates a serial port and thus allows multiple "ports" over a single bluetooth channel. This enables TCP/IP and roughly the same service and reliability guarantees as TCP.
+\begin{mytitle}[Radio frequency communication (RFCOMM)] RFCOMM emulates a serial port and thus allows multiple "ports" over a single bluetooth channel. This enables TCP/IP and roughly the same service and reliability guarantees as TCP.
 \end{mytitle}
 \begin{mytitle}[Bluetooth low energy (BLE)] BLE has up to 260 Kbps data rate and only sends occasional updates of sensor values. It does not have voice support, has fewer but broader channels, has a faster connection setup and the modulation scheme is optimized for low power usage.
 \end{mytitle}
@@ -123,6 +122,8 @@
 \end{mytitle}
 
 \subsection{Web of Things}
+\begin{mytitle}[IoT vs WoT] IoT describes the global network of physical objects that communicate using the internet protocol. WoT refers to a specific part of the WWW where physical entities are identified by URLs and interlinked by hyperlinks.
+\end{mytitle}
 \begin{mytitle}[Hypermedia as the engine of application state (HATEOAS)] With HATEOAS, a machine API needs no syntactic documentation. Making full use of the WoT (including HATEOAS) for devices and services facilitates the autonomous usage of their interface by machine clients and the creation of flexible mashups across services by different providers. HATEOAS makes systems flexible and robust by decoupling clients and servers as clients discover state transitions at runtime.
 \end{mytitle}
 \begin{mytitle}[HTTP] HTTP is a text-based protocol. HTTP requests indicate the action to be performed and what type of response the client will accept. The advantages are that it is understandable and debuggable. The disadvantage is that it is not very efficient. 
