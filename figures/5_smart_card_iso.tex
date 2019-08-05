@@ -1,0 +1,40 @@
+\begin{center}
+\begin{tikzpicture}
+\draw [rounded corners=15pt, firstAccent] (0,0) rectangle (4,3);
+
+\draw [firstAccent] (0, 0.8) -- (0.3, 0.8) -- (0.3, 0.3) -- (1.7, 0.3) --(1.7, 1.2) -- (0, 1.2);
+\draw [firstAccent] (0, 2.2) -- (0.3, 2.2) -- (0.3, 2.7) -- (1.7, 2.7) -- (1.7, 1.8) -- (0, 1.8);
+\node (2) at (0, 1.5) [draw, anchor=west, rounded rectangle, rounded  rectangle west arc=0pt, minimum height=1cm, minimum width=1.5cm, firstAccent, fill=white] {};
+\draw [firstAccent] (0, 1.5) -- (1.25, 1.5);
+
+\draw [firstAccent] (4, 0.8) -- (3.7, 0.8) -- (3.7, 0.3) -- (2.3, 0.3) --(2.3, 1.2) -- (4, 1.2);
+\draw [firstAccent] (4, 2.2) -- (3.7, 2.2) -- (3.7, 2.7) -- (2.3, 2.7) -- (2.3, 1.8) -- (4, 1.8);
+\node (2) at (4, 1.5) [draw, anchor=east, rounded rectangle, rounded  rectangle east arc=0pt, minimum height=1cm, minimum width=1.5cm, firstAccent, fill=white] {};
+\draw [firstAccent] (2.75, 1.5) -- (4, 1.5);
+
+
+\node (EP) at (2, 4) [draw, anchor=south] {External power, 3-5 V};
+\node (Vcc) at (1, 3.3) [draw, anchor=south] {Vcc};
+\node (GND) at (3, 3.3) [draw, anchor=south] {GND};
+\draw (Vcc |- EP.south) -- (Vcc);
+\draw (GND |- EP.south) -- (GND); 
+\draw (Vcc) -- (1, 2.25); 
+\draw (GND) -- (3, 2.25); 
+
+\node (RST) at (-0.3, 1.8) [draw, anchor=east] {RST};
+\node (CLK) at (-0.3, 1.2) [draw, anchor=east] {CLK, 3.5-5 MHz};
+\draw (RST) -- (0.5, 1.8);
+\draw (CLK) -- (0.5, 1.2);
+
+\node (USB) at (2, -0.3) [draw, anchor=north] {USB signaling};
+\draw (USB) |- (1, 0.75);
+\draw (USB) |- (3, 0.75); 
+
+\node (EPROM) at (4.3, 1.8) [draw, anchor=west] {EEPROM};
+\node (IO) at (4.3, 1.2) [draw, anchor=west] {I/O};
+\draw (EPROM) -- (3.5, 1.8);
+\draw (IO) -- (3.5, 1.2);
+
+\end{tikzpicture}
+\captionof{figure}{Smart card ISO standard}
+\end{center}

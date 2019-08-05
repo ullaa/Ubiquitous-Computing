@@ -1,7 +1,15 @@
 \section{Smart Cards}
+\input{figures/5_smart_card_iso.tex}
 \begin{mytitle}[Main use] Smart cards are portable secure containers for secret data. They are a secure environment for cryptographic algorithms, but they are also interesting for ubicomp technology because they are a cheap, small and disposable computer with security tokens. 
 \end{mytitle}
-\begin{mytitle}[Memory cards vs processor cards] Memory cards are just a container for data, usually with access control for parts of the memory. They are cheap but not truly smart. Processor cards on the other hand have an internal microprocessor and RAM. They optionally contain a true random generator or hardware crypto-functionality.
+\begin{mytitle}[Memory cards vs processor cards] Memory cards are just a container for data, usually with access control for parts of the memory. They are cheap (around 1 euro) but not truly smart. Processor cards on the other hand have an internal microprocessor and RAM. They optionally contain a true random generator or hardware crypto-functionality. Processor cards cost 1 - 20 euros.
+\end{mytitle}
+\input{figures/5_processor_cards.tex}
+\begin{mytitle}[Random number generation (RNG)] There are two types of RNGs:
+\begin{itemize}
+    \item Pseudo random numbers are typically generated based on some logical CPU states that are incremented by a clock or a crypto-algorithm such as DES.
+    \item True random number generators exploit physical characteristics (i.e. noise).
+\end{itemize}
 \end{mytitle}
 \begin{mytitle}[Communication with the card] Communication between the card reader and the smart card is always initiated by the reader. The card gets Vcc and CLK and does a "reset". Within a few ms, it sends back an "answer to reset" (ATR) containing basic information about the card. Then the terminal sends the first command application protocol data unit (APDU) to the card and the card answers with a response APDU. Encryption and authentication is possible, but slows down the communication by a factor of 4.
 \end{mytitle}
@@ -11,7 +19,21 @@
 \end{mytitle}
 \begin{myremark} The secret data inside the card must never leave the card and computations must not be observable from the outside.
 \end{myremark}
-\begin{mytitle}[Entity authentication] The terminal verifies the card (internal auth) and the card verifies the terminal (external auth). Then the terminal asks the user to provide the password and sends it to the card for verification.
+\begin{mytitle}[Entity authentication] \hfill
+\begin{itemize}
+    \item Internal authentification: The terminal verifies the card by sending a random number to the card to be hashed/encrypted using a key. The card provides the hash/ciphertext, with that the terminal knows that the card is authentic.
+    \item External authentification: The card verifies the terminal for which the terminal first asks for a challenge which the card provides. The card can then analyze the response to know that the terminal is authentic. 
+    \item Card holder authentification: The terminal asks the user to provide the password and sends it to the card for verification.
+\end{itemize} 
+\end{mytitle}
+\subsection{Smart Card Components}
+\begin{mytitle}[Smart card hardware] The typical hardware has cheap classical 8 bit and 16 bit processors a memory management unit (MMU) necessary for multi-application smart cards and 1 - 10 MHz externally supplied power.
+\end{mytitle}
+\begin{mytitle}[Smart card operating system] The typical operating systems is smaller than 100 kB and very simple with no user interface, no external devices, no interrupts and no multiprogramming but security is of prime importance. It is highly dependent on the hardware. Access to the operating system functions via an API.
+\end{mytitle}
+\begin{mytitle}[Smart card instructions] There exist several standards that define instructions. Some examples of instruction types are file operations (select, read, write, seek, \ldots), security (authentication and encryption), application specific operations (e.g. instructions for an electronic purse) and operations for testing.
+\end{mytitle}
+\begin{mytitle}[Smart card file system] Smart cards use a hierarchical file system in EEPROM. There has to be support for different types of files and several types of access control, as well as file access commands like create, delete, write, read, append, lock, invalidate and seek.
 \end{mytitle}
 
 \subsection{Attacks}
@@ -28,7 +50,7 @@
 \begin{itemize}
     \item Clock bursts: momentarily cause a rapid increase in the clock frequency, this causes instructions to be skipped
     \item Voltage glitch: momentarily cause a drop in voltage, this causes instructions to be decoded incorrectly
-    \item Acid hacking: gain access to ROM by physically gaining access to see the bits
+    \item Acid hacking: gain access to ROM by physically gaining access to see the bits. One could then simply read out from the memory. Another possible use is the  manipulation of the random generator so that it always yields the same number. Again another use is to set the bit of an unknown secret key to 0 or 1, the application will then typically return a parity error if the guess was incorrect. 
 \end{itemize}
 \end{mytitle}
 \begin{mytitle}[More advanced attacks]\hfill

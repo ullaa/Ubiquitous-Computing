@@ -7,7 +7,7 @@ axis y line=left,
 axis x line=bottom,
 xmax=8,xmin=0,
 ymin=0,ymax=3,
-xlabel=frequency,
+xlabel=time,
 x label style={at={(axis description cs:1,-0.1)},anchor=east},
 ylabel=,
 xmajorticks=false,
@@ -18,13 +18,16 @@ legend pos=south east,
 legend cell align={right}
 ]
 \addplot+ [samples = 40, domain=0:7.5, no markers, secondAccent, dotted] {x^3/130};
-\addlegendentry{Data rate}
+\addlegendentry{Number}
 \addplot+ [samples = 40, domain=0:7.5, no markers, firstAccent] {-(x-7.5)^3/130};
-\addlegendentry{Antenna size}
+\addlegendentry{Size}
+\node at (1.25, 3) [anchor=north, align=center] {1 Computer \\ - Many People};
+\addplot+ [mark=none, black, dashed] coordinates {(2.5, 0) (2.5, 3)};
+\node at (3.75, 3) [anchor=north, align=center] {1 Computer \\ - 1 Person};
 \addplot+ [mark=none, black, dashed] coordinates {(5, 0) (5, 3)};
-\node [anchor=east] at (4.8,2.5) {penetration};
-\node [anchor=west] at (5.2,2.535) {reflection};
+\node at (6.25, 3) [anchor=north, align=center] {Many Computers \\ - 1 Person};
+
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Operation frequencies}
+\captionof{figure}{Computing Trend}
 \end{center}
