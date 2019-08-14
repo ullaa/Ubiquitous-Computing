@@ -53,14 +53,14 @@ The data rate is typically several kbits/s up to 100 kbits/s.
 \subsection{Anti-Collision Protocols}
 \begin{mytitle}[The collision problem] The reader broadcasts energy and its signal to many transponders, then all transponders may react simultaneously. They will interfere if there is only a single shared channel. Ideally a transponder should have exclusive access to the shared channel during the short period where it transmits a few bytes. But transponders usually don't hear the signal from other transponders, only the one from the reader. We want access control and collision detection/avoidance to be fast and reliable.
 \end{mytitle}
-\begin{mytitle}[Capture effect] The throughput improves if transponders closer to the reader "win" because of their stronger signal. Difference in signal strength leads to the problem of weak collisions, where the reader might not notice the presence of a weak signal because of an overwhelming presence of a strong signal and thus collisions might go unnoticed.
+\begin{mytitle}[Capture effect] The throughput improves if transponders closer to the reader ``win'' because of their stronger signal. Difference in signal strength leads to the problem of weak collisions, where the reader might not notice the presence of a weak signal because of an overwhelming presence of a strong signal and thus collisions might go unnoticed.
 \end{mytitle}
 \begin{mytitle}[Collision avoidance with FDMA] This approach needs many channels in parallel, hence it is only suitable for some particular applications with a small, fixed number of transponders.
 \end{mytitle}
 \begin{mytitle}[Stochastic protocols] Stochastic protocols usually do not detect all tags in one read cycle, there is overall less reader to tag communication and there is typically an ALOHA-based anti-collision algorithm.
     \begin{mysubtitle}[ALOHA principle] Transponders repeatedly send out their data with random length quiet periods in-between. The data should eventually get through. The higher the load, the more collisions happen. This has a maximal throughput of 18.4\%. This is a stochastic TDMA protocol.
     \end{mysubtitle}
-    \begin{mysubtitle}[Slotted ALOHA] Transponders start their transmissions only at well-defined instants (slots). Synchronization is done by the reader who periodically sends out "sync" commands. All transponders then send their serial number in one of the following slots. If the reader gets only one serial number "sn", it sends a "select sn" command. Only the transponder with serial number "sn" responds by sending its payload data. The maximal throughput is then 36.8\%. 
+    \begin{mysubtitle}[Slotted ALOHA] Transponders start their transmissions only at well-defined instants (slots). Synchronization is done by the reader who periodically sends out ``sync'' commands. All transponders then send their serial number in one of the following slots. If the reader gets only one serial number ``sn'' it sends a ``select sn'' command. Only the transponder with serial number ``sn'' responds by sending its payload data. The maximal throughput is then 36.8\%. 
     \end{mysubtitle}
     \begin{mysubtitle}[Reservation ALOHA] This protocol has two phases: first a short ALOHA phase where the transponders compete for reservations, then the reserved phase for payload data transmission. 
     \end{mysubtitle}
@@ -69,23 +69,23 @@ The data rate is typically several kbits/s up to 100 kbits/s.
 \end{mytitle}
 \input{figures/4_res_aloha}
 \begin{mytitle}[Deterministic protocols] Deterministic protocols usually detect all tags that are present in a read cycle, but they introduce high reader to tag communication overheads. There is typically a tree-walking anti-collision algorithm.
-    \begin{mysubtitle}[Tree-walking anti-collision algorithm] \hfill
-    \begin{itemize}
-        \item The coding scheme: We use Manchester encoding, so that where two signals that are transmitting over each other differ, it results in an illegal signal and the reader can locate these bits. This requires bit synchronization.
-        \input{figures/4_manchester.tex}
-        \item The basic idea: The reader broadcasts a "sync" to all transponders, then requests the ID number of all transponders. It then determines the leftmost bit $b$ that yields a collision. If there is none, the reader requests data from the unique transponder $x$, then sends "halt" to $x$. Then the reader moves up the tree to the next appropriate subtree with a different value of the last $b$. If there is a collision, the reader broadcasts "mute if value 0 at position $b$". Only transponders with value 1 at position $b$ move to the next round, all others remain mute from now on.
-    \end{itemize}
+    \begin{mysubtitle}[The coding scheme] We use Manchester encoding, so that where two signals that are transmitting over each other differ, it results in an illegal signal and the reader can locate these bits. This requires bit synchronization.
+    \input{figures/4_manchester.tex}
+    \end{mysubtitle}
+    \begin{mysubtitle} [Tree-walking anti-collision algorithm] The reader broadcasts a ``sync'' to all transponders, then requests the ID number of all transponders. It then determines the leftmost bit $b$ that yields a collision. If there is none, the reader requests data from the unique transponder $x$, then sends ``halt'' to $x$. Then the reader moves up the tree to the next appropriate subtree with a different value of the last $b$. If there is a collision, the reader broadcasts ``mute if value 0 at position $b$'' Only transponders with value 1 at position $b$ move to the next round, all others remain mute from now on.
     \end{mysubtitle}
 \end{mytitle}
 
-\begin{mytitle}[Business-relevant and application-driven criteria] \hfill
-\begin{itemize}
-    \item Read range: Low and high frequency have a read range of 1-1.5 m, ultra high frequency has a read range of around 10 m. The working area is typically complex.
-    \item Data transfer and detection rate: Low and high frequency have a data transfer rate of 5 kb/s, ultra high frequency has a data transfer rate of 50 kb/s. The detection rate depends on the data transfer rate, the choice of anti-collision algorithm and the length of the tag ID. Typically low and high frequency have a detection rate of 10-30 tags/s, ultra high frequency has a range of 100-500 tags/s.
-    \item Susceptibility to noise and other error sources: This depends on frequency, antenna size and protocol.
-    \item Cost: The cost typically ranges from a few cents to a few dollars.
-    \item Form factors: This includes things like the coice of paper vs. plastic.
-\end{itemize}
+\subsection{Business-relevant and application-driven criteria}
+\begin{mytitle}[Read range]Low and high frequency have a read range of 1-1.5 m, ultra high frequency has a read range of around 10 m. The working area is typically complex.
+\end{mytitle}
+\begin{mytitle}[Data transfer and detection rate] Low and high frequency have a data transfer rate of 5 kb/s, ultra high frequency has a data transfer rate of 50 kb/s. The detection rate depends on the data transfer rate, the choice of anti-collision algorithm and the length of the tag ID. Typically low and high frequency have a detection rate of 10-30 tags/s, ultra high frequency has a range of 100-500 tags/s.
+\end{mytitle}
+\begin{mytitle}[Susceptibility to noise and error sources]This depends on frequency, antenna size and protocol.
+\end{mytitle}
+\begin{mytitle}[Cost] The cost typically ranges from a few cents to a few dollars.
+\end{mytitle}
+\begin{mytitle}[Form factors]This includes things like the coice of paper vs. plastic.
 \end{mytitle}
 
 \subsection{Strengths and Drawbacks of RFID}

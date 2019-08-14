@@ -11,7 +11,7 @@
     \item True random number generators exploit physical characteristics (i.e. noise).
 \end{itemize}
 \end{mytitle}
-\begin{mytitle}[Communication with the card] Communication between the card reader and the smart card is always initiated by the reader. The card gets Vcc and CLK and does a "reset". Within a few ms, it sends back an "answer to reset" (ATR) containing basic information about the card. Then the terminal sends the first command application protocol data unit (APDU) to the card and the card answers with a response APDU. Encryption and authentication is possible, but slows down the communication by a factor of 4.
+\begin{mytitle}[Communication with the card] Communication between the card reader and the smart card is always initiated by the reader. The card gets Vcc and CLK and does a ``reset''. Within a few ms, it sends back an ``answer to reset'' (ATR) containing basic information about the card. Then the terminal sends the first command application protocol data unit (APDU) to the card and the card answers with a response APDU. Encryption and authentication is possible, but slows down the communication by a factor of 4.
 \end{mytitle}
 \begin{mytitle}[Subscriber identity module (SIM)] The SIM is the security module for accessing the mobile phone network.
 \end{mytitle}
@@ -27,7 +27,7 @@
 \end{itemize} 
 \end{mytitle}
 \subsection{Smart Card Components}
-\begin{mytitle}[Smart card hardware] The typical hardware has cheap classical 8 bit and 16 bit processors a memory management unit (MMU) necessary for multi-application smart cards and 1 - 10 MHz externally supplied power.
+\begin{mytitle}[Smart card hardware] The typical hardware has cheap classical 8 bit and 16 bit processors, a memory management unit (MMU) necessary for multi-application smart cards and 1 - 10 MHz externally supplied power.
 \end{mytitle}
 \begin{mytitle}[Smart card operating system] The typical operating systems is smaller than 100 kB and very simple with no user interface, no external devices, no interrupts and no multiprogramming but security is of prime importance. It is highly dependent on the hardware. Access to the operating system functions via an API.
 \end{mytitle}
@@ -35,7 +35,7 @@
 \end{mytitle}
 \begin{mytitle}[Smart card file system] Smart cards use a hierarchical file system in EEPROM. There has to be support for different types of files and several types of access control, as well as file access commands like create, delete, write, read, append, lock, invalidate and seek.
 \end{mytitle}
-
+\newpage
 \subsection{Attacks}
 \begin{mytitle}[Attack classification] There are three kinds of attackers:
 \begin{itemize}
@@ -56,7 +56,7 @@
 \begin{mytitle}[More advanced attacks]\hfill
 \begin{itemize}
     \item Power analysis attack: The attacker measures the power consumption to learn the bits of the secret key. When no special counter-measures are taken, this is applicable for almost all crypto-algorithms and smart cards.
-    \item Hamming weight leakage: The attacker learns the number of 1s in each of the seven 8-bit words of the secret key. This reduces the brute-force search space from $2^{56}$ to $2^{40}$. (That is a factor of 65'536.)
+    \item Hamming weight leakage: The attacker learns the number of 1s in each of the seven 8-bit words of the secret key by using an electromagnetic probe. This reduces the brute-force search space from $2^{56}$ to $2^{40}$. (That is a factor of 65'536.)
     \item Timing attack: Because there is code that is only executed when the bit is 1, the operation will take a bit longer in that case. From this information the attacker can also learn the bits of the secret key.
 \end{itemize}
 \end{mytitle}
