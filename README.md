@@ -1,4 +1,4 @@
-# Ubiquitous-Computing
+# Ubiquitous Computing
 
 A LaTex summary for the course "Ubiquitous Computing" at ETH Zürich.
 
